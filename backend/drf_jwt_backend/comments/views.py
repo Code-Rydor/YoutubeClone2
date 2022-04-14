@@ -18,8 +18,7 @@ def get_all_comments(request):
 @api_view(['GET', 'POST', 'PUT'])
 @permission_classes([IsAuthenticated])
 def user_comments(request):
-    print(
-        'User ', f"{request.user.id} {request.user.email} {request.user.username}")
+    print('User ', f"{request.user.id} {request.user.email} {request.user.username}")
     if request.method == 'POST':
         serializer= CommentSerializer(data= request.data)
         if serializer.is_valid():
