@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -21,8 +22,9 @@ def get_all_comments(request, video_id):
 
 @api_view(['GET', 'POST', 'PUT'])
 @permission_classes([IsAuthenticated])
-def user_comments(request):
+def user_comments(request,pk):
     print('User ', f"{request.user.id} {request.user.email} {request.user.username}")
+    comments = get_object_or_404(Comment,pk=pk)
     if request.method == 'POST':
         serializer= CommentSerializer(data= request.data)
         if serializer.is_valid():
@@ -41,3 +43,4 @@ def user_comments(request):
 
 #Maybe duplicate GET and POST for Replies and change words accordingly
 
+# @api_view(['PUT'])
