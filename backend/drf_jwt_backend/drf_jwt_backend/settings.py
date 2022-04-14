@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'authentication.apps.AuthenticationConfig',
-    'corsheaders',
+    'corsheaders',    
     'cars.apps.CarsConfig',  # This app is for example use only
     'comments',
 ]
