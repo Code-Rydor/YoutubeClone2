@@ -9,10 +9,14 @@ from .models import Comment
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
-def get_all_comments(request):
-    comments = Comment.objects.all()
+def get_all_comments(request, video_id):
+    comments = Comment.objects.filter(video_id=video_id)
     serializer = CommentSerializer(comments, many=True)
     return Response(serializer.data)
+
+
+
+
 
 
 @api_view(['GET', 'POST', 'PUT'])
