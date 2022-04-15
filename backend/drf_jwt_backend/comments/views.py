@@ -20,7 +20,7 @@ def get_all_comments(request, video_id):
 
 
 
-@api_view(['POST', 'PUT'])
+@api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def user_comments(request):
     print('User ', f"{request.user.id} {request.user.email} {request.user.username}")
@@ -30,7 +30,15 @@ def user_comments(request):
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'PUT':    
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def edit_comment(request, comment_id):
+    if request.method == 'PUT':    
+        # get the record that needs to be updated
+        # use commment_id for this
+        
         serializer = CommentSerializer(Comment, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
