@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
@@ -28,6 +29,8 @@ const HomePage = () => {
   return (
     <div className="container">
       <h1>Home Page for {user.username}!</h1>
+      <Link to="/addvideo"> Add Music!</Link>
+
       {cars &&
         cars.map((car) => (
           <p key={car.id}>
