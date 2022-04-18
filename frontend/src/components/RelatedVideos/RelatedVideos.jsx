@@ -51,6 +51,7 @@ const RelatedVideos = (props) => {
               </li>
             );
           }
+          else return null
         })}
       </ul>
     </div>

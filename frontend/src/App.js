@@ -15,6 +15,7 @@ function App() {
   const [currentVideoId, setVideoId] = useState("");
   const [search, setSearch] = useState("");
   const [storedUserName, setStoredUserName] = useState("");
+  const APIKEY = "AIzaSyBX7Unp0G6opzW7hJ3wWBp85ysQaslVrsI";
 
   useEffect(() => {
     const jwt = localStorage.getItem("token");
@@ -23,28 +24,24 @@ function App() {
       const decodedUser = jwt_decode(jwt);
       setUser(decodedUser);
     } catch {}
-    getVideo();
+    getVideo("castles");
   }, []);
 
   async function getVideo(request) {
-    let response = await axios.get(
-      'www.googleapis.com/youtube/v3/search?q={SEARCH QUERY HERE}&key={API KEY HERE}'
-    );
-    console.log("getVideo function response data", response.data);
     try {
+      let response = await axios.get(
+        `https://www.googleapis.com/youtube/v3/search?q=${request}&key=${APIKEY}`
+      );
+      console.log("getVideo function response data", response.data);
       setVideoId(response.data.items[0].id.videoId);
-    } catch {}
+    } catch (err) {
+      console.log("Error in getVideo call: ", err);
+    }
   }
-
-
 
   return (
     <div className="App">
-      <NavBar
-        search={search}
-        setSearch={setSearch}
-        getVideo={getVideo}
-      />
+      <NavBar search={search} setSearch={setSearch} getVideo={getVideo} />
       <Routes>
         <Route
           exact
@@ -59,7 +56,7 @@ function App() {
               
             />
           }
-        />
+         />
         <Route
           path="home"
           element={() => {
@@ -71,7 +68,7 @@ function App() {
           }}
         />
         <Route
-          path="loginform/*"
+          path="login/*"
           element={
             <LoginForm user={user} setStoredUserName={setStoredUserName} />
           }

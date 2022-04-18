@@ -1,7 +1,5 @@
 import React from "react";
-import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import RelatedVideos from "../RelatedVideos/RelatedVideos";
-import CommentForm from "../CommentForm/CommentForm";
 import Comment from "../Comment/Comment";
 import { Container, Row, Col } from "react-bootstrap";
 
