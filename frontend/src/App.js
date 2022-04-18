@@ -1,11 +1,11 @@
 import "./App.css";
-import LoginForm from "./Components/LoginForm/LoginForm";
-import RegistrationForm from "./Components/RegistrationForm/RegistrationForm";
+import LoginForm from "./components/LoginForm/LoginForm.jsx";
+import RegistrationForm from "./components/RegistatrationForm/RegistrationForm";
 import { Routes, Route } from "react-router-dom";
-import NavBar from "./Components/NavBar/NavBar";
+import NavBar from "./components/NavBar/NavBar.jsx";
 import React, { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
-import Home from "./Components/Home/Home";
+import Home from "./components/Home/Home.jsx";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -28,7 +28,7 @@ function App() {
 
   async function getVideo(request) {
     let response = await axios.get(
-      www.googleapis.com/youtube/v3/search?q={SEARCH QUERY HERE}&key={API KEY HERE}
+      'www.googleapis.com/youtube/v3/search?q={SEARCH QUERY HERE}&key={API KEY HERE}'
     );
     console.log("getVideo function response data", response.data);
     try {

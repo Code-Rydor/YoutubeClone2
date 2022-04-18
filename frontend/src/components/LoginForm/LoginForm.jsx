@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./LoginForm.css";
 import axios from "axios";
 import { Link, Route, Routes } from "react-router-dom";
-import RegistrationForm from "../RegistrationForm/RegistrationForm";
+import RegistrationForm from "../RegistatrationForm/RegistrationForm";
+
 
 const LoginForm = (props) => {
 

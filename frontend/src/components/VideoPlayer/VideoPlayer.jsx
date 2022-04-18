@@ -9,3 +9,5 @@ const VideoPlayer = (props) => {
         </div>
      );
 }
+
+export default VideoPlayer;

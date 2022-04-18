@@ -1,13 +1,12 @@
 import axios from "axios";
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Reply from "../Reply/Reply";
-import Card from "react-bootstrap";
 import "./Comment.css";
 
 const Comment = (props) => {
   const [comments, setComments] = useState([]);
-  const [like, setLike] = useState(comments.likes);
-  const [dislike, setDislike] = useState(comments.dislikes);
+  // const [like, setLike] = useState(comments.likes);
+  // const [dislike, setDislike] = useState(comments.dislikes);
   const [onReplyClick, setOnReplyClick] = useState(false);
   const [commentId, setCommentId] = useState(0);
 
