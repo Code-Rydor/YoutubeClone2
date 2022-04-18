@@ -10,7 +10,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  const [videoTitle, setVideoTitle] = useState("");
+  // const [videoTitle, setVideoTitle] = useState("");
   const [user, setUser] = useState(null);
   const [currentVideoId, setVideoId] = useState("");
   const [search, setSearch] = useState("");

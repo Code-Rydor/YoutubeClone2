@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Reply = (props) => {
@@ -17,7 +17,7 @@ const Reply = (props) => {
     let mounted = true;
     if (mounted) {
       getCommentReplies(props.commentId);
-      console.log("Reply mounted test: successful!");
+      console.log(" successful!");
     }
     return () => (mounted = false);
   }, [props.videoId]);
@@ -27,12 +27,13 @@ const Reply = (props) => {
       {replies.map((reply, index) => {
         if (reply.comment_id === props.commentId) {
           return (
-            <div>
+            <div key={index}>
               <div className="username">{reply.user.username}</div>
               <span className="reply-text">{reply.text}</span>
             </div>
-          );
+          )
         }
+        else return null
       })}
     </div>
   );

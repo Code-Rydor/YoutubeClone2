@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import RelatedVideos from "../RelatedVideos/RelatedVideos";
 import CommentForm from "../CommentForm/CommentForm";
@@ -20,12 +20,12 @@ const Home = (props) => {
           </Col>
           <Col md={9}>
             2 of 2
-            <VideoPlayer videoId={props.videoId} />
+            {/* <VideoPlayer videoId={props.videoId} />
             <CommentForm
               user={props.user}
               videoId={props.videoId}
               setUser={props.setUser}
-            />
+            /> */}
             <Comment
               user={props.user}
               videoId={props.videoId}

@@ -55,6 +55,7 @@ const Comment = (props) => {
             </div>
           );
         }
+        else return null
       })}
     </div>
   );
