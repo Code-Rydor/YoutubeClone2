@@ -42,8 +42,9 @@ function App() {
   return (
     <div className="App">
       <NavBar search={search} setSearch={setSearch} getVideo={getVideo} />
+      <Home />
       <Routes>
-        <Route
+        {/* <Route
           exact
           path="/"
           element={
@@ -56,7 +57,7 @@ function App() {
               
             />
           }
-         />
+         /> */}
         <Route
           path="home"
           element={() => {

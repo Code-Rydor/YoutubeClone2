@@ -4,7 +4,7 @@ import "../RelatedVideos/RelatedVideos.css";
 
 const RelatedVideos = (props) => {
   const [listRelatedVideos, setListRelatedVideos] = useState([]);
-  const APIKEY = "some_key_data"
+  const APIKEY = "AIzaSyBX7Unp0G6opzW7hJ3wWBp85ysQaslVrsI"
 
   async function getRelatedVideos(some_video_id) {
     console.log("Called successfully");
