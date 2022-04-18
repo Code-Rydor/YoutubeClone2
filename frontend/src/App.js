@@ -28,7 +28,7 @@ function App() {
 
   async function getVideo(request) {
     let response = await axios.get(
-      ///PLACE API KEY FROM GOOGLE ///
+      www.googleapis.com/youtube/v3/search?q={SEARCH QUERY HERE}&key={API KEY HERE}
     );
     console.log("getVideo function response data", response.data);
     try {
