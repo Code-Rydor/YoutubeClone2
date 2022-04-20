@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Form, FormControl } from "react-bootstrap";
 
 const SearchBar = (props) => {
@@ -17,6 +17,7 @@ const SearchBar = (props) => {
         value={props.search}
         onChange={(event) => props.setSearch(event.target.value)}
       />
+      <input type="text"></input>
       <Button type="submit">Search</Button>
     </Form>
   );
