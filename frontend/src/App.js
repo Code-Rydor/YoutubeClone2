@@ -1,6 +1,4 @@
 import "./App.css";
-import LoginForm from "./components/LoginForm/LoginForm.jsx";
-import RegistrationForm from "./components/RegistatrationForm/RegistrationForm";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar.jsx";
 import React, { useState, useEffect } from "react";
@@ -8,6 +6,9 @@ import jwt_decode from "jwt-decode";
 import Home from "./components/Home/Home.jsx";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
+
 
 function App() {
   // const [videoTitle, setVideoTitle] = useState("");
@@ -15,16 +16,18 @@ function App() {
   const [currentVideoId, setVideoId] = useState("");
   const [search, setSearch] = useState("");
   const [storedUserName, setStoredUserName] = useState("");
-  const APIKEY = "AIzaSyBX7Unp0G6opzW7hJ3wWBp85ysQaslVrsI";
+  const APIKEY = "AIzaSyCGCESY1CjRJSKHwX_ju4zfz0klFjmzipw";
 
   useEffect(() => {
     const jwt = localStorage.getItem("token");
-
     try {
       const decodedUser = jwt_decode(jwt);
       setUser(decodedUser);
-    } catch {}
-    getVideo("castles");
+      console.log('Decoded user from App.jsx', decodedUser)
+    } catch { }
+
+
+    getVideo("How They Remember You");
   }, []);
 
   async function getVideo(request) {
@@ -42,10 +45,9 @@ function App() {
   return (
     <div className="App">
       <NavBar search={search} setSearch={setSearch} getVideo={getVideo} />
-      <Home />
       <Routes>
-        {/* <Route
-          exact
+        <Route
+          
           path="/"
           element={
             <Home
@@ -57,27 +59,27 @@ function App() {
               
             />
           }
-         /> */}
+         />
         <Route
-          path="home"
+          path="/home"
           element={() => {
             if (!user) {
-              return <LoginForm />;
+              return <LoginPage />;
             } else {
               return <Home user={user} />;
             }
           }}
         />
         <Route
-          path="login/*"
+          path="/login"
           element={
-            <LoginForm user={user} setStoredUserName={setStoredUserName} />
+            <LoginPage user={user} setStoredUserName={setStoredUserName} />
           }
         />
         <Route
-          exact
-          path="loginform/registration"
-          element={<RegistrationForm />}
+          
+          path="/register"
+          element={<RegisterPage />}
         />
       </Routes>
     </div>

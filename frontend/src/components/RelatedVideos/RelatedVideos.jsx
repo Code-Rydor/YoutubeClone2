@@ -4,14 +4,13 @@ import "../RelatedVideos/RelatedVideos.css";
 
 const RelatedVideos = (props) => {
   const [listRelatedVideos, setListRelatedVideos] = useState([]);
-  const APIKEY = "AIzaSyBX7Unp0G6opzW7hJ3wWBp85ysQaslVrsI"
+  const APIKEY = "AIzaSyCGCESY1CjRJSKHwX_ju4zfz0klFjmzipw"
 
-  async function getRelatedVideos(some_video_id) {
+  async function getRelatedVideos() {
     console.log("Called successfully");
     if (props.videoId) {
       let response = await axios.get(
-        `www.googleapis.com/youtube/v3/search?relatedToVideoId={${some_video_id}}&type=video&key={${APIKEY}}`
-      );
+        `https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${props.videoId}&type=video&key=${APIKEY}`);
       setListRelatedVideos(response.data.items);
       console.log("video list", response.data.items);
     } else {
