@@ -17,9 +17,14 @@ function App() {
   const [currentVideoId, setVideoId] = useState("");
   const [search, setSearch] = useState("");
   const [storedUserName, setStoredUserName] = useState("");
-  const APIKEY = "AIzaSyCGCESY1CjRJSKHwX_ju4zfz0klFjmzipw";
+  const APIKEY = "AIzaSyAa59b7GkWZV_2mq-RETTRpSiIlwZwUiUY";
   const [videoDescription, setVideoDescription] = useState("");
   const [videoTitle, setVideoTitle] = useState("");
+
+  const handleSelectedVideo = (someVideoId) => {
+    setVideoId(someVideoId)
+    getVideo(someVideoId)
+  }
 
   useEffect(() => {
     const jwt = localStorage.getItem("token");
@@ -33,13 +38,15 @@ function App() {
     getVideo();
   }, []);
 
-  async function getVideo(request='purpose') {
+  async function getVideo(request = 'How they remember you') {
     try {
       let response = await axios.get(
-        `https://www.googleapis.com/youtube/v3/search?q=${request}&key=${APIKEY}`
+        `https://www.googleapis.com/youtube/v3/search?q=${request}&key=${APIKEY}&part=snippet`
       );
       console.log("getVideo function response data", response.data.items);
       setVideoId(response.data.items[0].id.videoId);
+      setVideoDescription(response.data.items[0].snippet.description);
+      setVideoTitle(response.data.items[0].snippet.title);
     } catch (err) {
       console.log("Error in getVideo call: ", err);
     }
@@ -59,7 +66,11 @@ function App() {
               user={user}
               setUser={setUser}
               videoId={currentVideoId}
-              setVideoId={setVideoId}
+              setVideoId={handleSelectedVideo}
+              videoDescription={videoDescription}
+              setVideoDescription={setVideoDescription}
+              videoTitle={videoTitle}
+              setVideoTitle={setVideoTitle}
               
             />
           }
