@@ -27,7 +27,7 @@ function App() {
     } catch { }
 
 
-    getVideo("How They Remember You");
+    getVideo("purpose");
   }, []);
 
   async function getVideo(request) {

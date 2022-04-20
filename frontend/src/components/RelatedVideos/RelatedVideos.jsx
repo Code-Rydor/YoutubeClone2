@@ -10,9 +10,9 @@ const RelatedVideos = (props) => {
     console.log("Called successfully");
     if (props.videoId) {
       let response = await axios.get(
-        `https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${props.videoId}&type=video&key=${APIKEY}`);
+        `https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${props.videoId}&type=video&key=${APIKEY}&part=snippet`);
       setListRelatedVideos(response.data.items);
-      console.log("video list", response.data.items);
+      console.log("video list", listRelatedVideos);
     } else {
       console.log("video ID");
     }
@@ -34,8 +34,8 @@ const RelatedVideos = (props) => {
   return (
     <div>
       <ul>
-        {listRelatedVideos.map((video, index) => {
-          if (video.snippet) {
+         {listRelatedVideos.map((video, index) => {
+          if (video.snippet) { 
             return (
               <li key={index}>
                 <button
@@ -50,7 +50,9 @@ const RelatedVideos = (props) => {
               </li>
             );
           }
-          else return null
+          else return (
+            <h1>Loading...</h1>
+       )
         })}
       </ul>
     </div>
