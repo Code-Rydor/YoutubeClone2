@@ -38,10 +38,10 @@ def edit_comment(request, comment_id):
     if request.method == 'PUT':    
         # get the record that needs to be updated
         # use commment_id for this
-        
-        serializer = CommentSerializer(Comment, data=request.data)
+        comment = Comment.objects.get(pk = comment_id)
+        serializer = CommentSerializer(comment, data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        serializer.save(user=request.user)
         return Response(serializer.data)
 
 #Maybe duplicate GET and POST for Replies and change words accordingly

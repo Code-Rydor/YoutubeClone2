@@ -8,6 +8,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import SearchBar from "./components/SearchBar/SearchBar";
 
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
   const [search, setSearch] = useState("");
   const [storedUserName, setStoredUserName] = useState("");
   const APIKEY = "AIzaSyCGCESY1CjRJSKHwX_ju4zfz0klFjmzipw";
+  const [videoDescription, setVideoDescription] = useState("");
+  const [videoTitle, setVideoTitle] = useState("");
 
   useEffect(() => {
     const jwt = localStorage.getItem("token");
@@ -27,15 +30,15 @@ function App() {
     } catch { }
 
 
-    getVideo("purpose");
+    getVideo();
   }, []);
 
-  async function getVideo(request) {
+  async function getVideo(request='purpose') {
     try {
       let response = await axios.get(
         `https://www.googleapis.com/youtube/v3/search?q=${request}&key=${APIKEY}`
       );
-      console.log("getVideo function response data", response.data);
+      console.log("getVideo function response data", response.data.items);
       setVideoId(response.data.items[0].id.videoId);
     } catch (err) {
       console.log("Error in getVideo call: ", err);
@@ -51,6 +54,7 @@ function App() {
           path="/"
           element={
             <Home
+              getVideo={getVideo}
               storedUserName={storedUserName}
               user={user}
               setUser={setUser}

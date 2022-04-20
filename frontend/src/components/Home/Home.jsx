@@ -3,6 +3,7 @@ import RelatedVideos from "../RelatedVideos/RelatedVideos";
 import Comment from "../Comment/Comment";
 import { Container, Row, Col } from "react-bootstrap";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Home = (props) => {
 
@@ -14,9 +15,10 @@ const Home = (props) => {
   },[])
   return (
     <div>
-      
+      <SearchBar getVideo={props.getVideo} />
       <VideoPlayer videoId={props.videoId} />
-      <RelatedVideos videoId={props.videoId} />
+      <RelatedVideos videoId={props.videoId}
+        setVideoId={props.setVideoId}/>
       <Comment
               user={props.user}
               videoId={props.videoId}
